@@ -4,19 +4,20 @@ import styled from 'styled-components';
 
 
 
-function ChatMessage() {
+function ChatMessage({data}) {
+    console.log(data.timestamp)
     return (
         <Container>
             <UserAvatar>
-                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="i"/>
+                <img src={data ? data.userImage : "https://randomuser.me/api/portraits/women/68.jpg"} alt="i"/>
             </UserAvatar>
             <MessageContent>
                 <Name>
-                    Animesh
-                    <span>5:15 pm</span>
+                    {data.user}
+                    <span>{new Date(data.timestamp.toDate()).toUTCString()}</span>
                 </Name>
                 <Text>
-                    Hello Good evening
+                    {data && data.text}
                 </Text>
             </MessageContent>
         </Container>
